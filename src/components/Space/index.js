@@ -2,13 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-export default function SpaceCard({
-  id,
-  title,
-  description,
-  backgroundColor,
-  color,
-}) {
+const SpaceCard = ({ id, title, description, backgroundColor, color }) => {
   return (
     <div>
       {" "}
@@ -16,7 +10,23 @@ export default function SpaceCard({
         {" "}
         <h2>{title}</h2> <p>{description}</p>
       </div>
-      <div><Link to={`/spaces/${id}`}> Visit Space</Link> </div>
+      <div>
+        <Link to={`/spaces/${id}`}>
+          <button>Visit Space </button>{" "}
+        </Link>{" "}
+      </div>
     </div>
   );
-}
+};
+
+const StoryCard = ({ id, name, content, imageUrl}) => {
+  return (
+    <div key={id} >
+      {" "}
+      <img src={imageUrl} alt=""/>
+      <h3> {name}</h3> <p> {content} </p>
+    </div>
+  );
+};
+
+export { SpaceCard, StoryCard };

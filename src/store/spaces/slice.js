@@ -13,11 +13,13 @@ const spaceSlice = createSlice({
    setAllSpaces: (state, action) => {
       state.allSpaces = action.payload;
     },
-    
+    setSpaceDetails: (state, action) => {
+      state.spaceDetails = action.payload
+    }
   },
 });
 
 // remember to export the action creators for the new reducer cases
-export const { setAllSpaces } = spaceSlice.actions;
+export const { setAllSpaces, setSpaceDetails } = spaceSlice.actions;
 
 export default spaceSlice.reducer;

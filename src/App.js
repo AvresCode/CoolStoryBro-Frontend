@@ -7,7 +7,8 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import SpacesHome from "./pages/SpacesHome";
+import SpacesHome from "./pages/SpacesHomePage";
+import SpaceDetailsPage from "./pages/SpaceDetailsPage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -40,7 +41,7 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<SpacesHome />} />
-      
+        <Route exact path="/spaces/:id" element={<SpaceDetailsPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
