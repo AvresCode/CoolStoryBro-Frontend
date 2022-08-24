@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.css"
 
 import { Link } from "react-router-dom";
 
@@ -21,10 +22,10 @@ const SpaceCard = ({ id, title, description, backgroundColor, color }) => {
 
 const StoryCard = ({ id, name, content, imageUrl}) => {
   return (
-    <div key={id} >
+    <div key={id} className="story-container"  >
       {" "}
-      <img src={imageUrl} alt=""/>
-      <h3> {name}</h3> <p> {content} </p>
+      <img src={imageUrl} alt="" />
+      <div><h3> {name}</h3> <p> {content} </p></div>
     </div>
   );
 };
