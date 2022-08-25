@@ -8,7 +8,7 @@ export async function fetchSpaces(dispatch, getState) {
   try {
     const spacesResponse = await axios.get(`${URL}/spaces`);
     const spaces = spacesResponse.data;
-   // console.log("spaces response:", spaces);
+    console.log("spaces response:", spaces);
     dispatch(setAllSpaces(spaces));
   } catch (e) {
     console.log(e.message);

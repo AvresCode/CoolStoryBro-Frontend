@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { fetchSpaceDetails } from "../../store/spaces/thunks";
 import { StoryCard } from "../../components/Space";
 
-
 export default function SpaceDetailsPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -23,18 +22,18 @@ export default function SpaceDetailsPage() {
     );
 
   const sortedStories = [...oneSpace.stories].sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    //(a, b) => a.createdAt - b.createdAt) 
-  
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+  //(a, b) => b.createdAt - a.createdAt)
 
   return (
-    <div >
-      <div 
+    <div>
+      <div
         style={{
           color: oneSpace.color,
           backgroundColor: oneSpace.backgroundColor,
-          textAlign:"center",
-          padding:"2vh 2vw",
+          textAlign: "center",
+          padding: "2vh 2vw",
         }}
       >
         <h3> {oneSpace.title}</h3>
@@ -44,7 +43,7 @@ export default function SpaceDetailsPage() {
           {sortedStories.map((story) => {
             const { id, name, content, imageUrl } = story;
             return (
-              <div key={id} >
+              <div key={id}>
                 {" "}
                 <StoryCard
                   id={id}

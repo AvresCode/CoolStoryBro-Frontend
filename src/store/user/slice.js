@@ -22,6 +22,8 @@ export const userSlice = createSlice({
     tokenStillValid: (state, action) => {
       state.profile = action.payload.user;
     },
+
+    
   },
 });
 
