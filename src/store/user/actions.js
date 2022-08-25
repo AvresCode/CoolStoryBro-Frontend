@@ -122,7 +122,7 @@ export const getUserWithStoredToken = () => {
 
 export const deleteOneStory = (id) => async (dispatch, getState) => {
   try {
-    console.log("here");
+  //  console.log("here");
     const token = selectToken(getState());
     const response = await axios.delete(`${apiUrl}/spaces/story/${id}`, {
       headers: { Authorization: `Bearer ${token}` },

@@ -33,7 +33,12 @@ export default function MySpace() {
         space.stories.map((story) => {
           const { id, name, content, imageUrl } = story;
           return (
-            <div key={id}>
+            <div key={id} style={{
+              color: space.color,
+              backgroundColor: space.backgroundColor,
+              textAlign: "center",
+              padding: "2vh 2vw",
+            }}>
               {" "}
               <StoryCard
                 id={id}
@@ -51,7 +56,7 @@ export default function MySpace() {
           );
         })
       ) : (
-        <p> 'You have no story yet, start writing your first story! '</p>
+        <p > 'You have no story yet, start writing your first story! '</p>
       )}
     </div>
   );
