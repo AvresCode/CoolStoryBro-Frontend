@@ -5,6 +5,7 @@ import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
 import { setAllSpaces } from "../spaces/slice";
+import { deleteStory } from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -15,12 +16,12 @@ export const signUp = (name, email, password) => {
         email,
         password,
       });
-console.log("response", response)
+      console.log("response", response);
       dispatch(
         loginSuccess({ token: response.data.token, user: response.data.user })
       );
       dispatch(showMessageWithTimeout("success", true, "account created"));
-      
+
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -117,4 +118,18 @@ export const getUserWithStoredToken = () => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+export const deleteOneStory = (id) => async (dispatch, getState) => {
+  try {
+    console.log("here");
+    const token = selectToken(getState());
+    const response = await axios.delete(`${apiUrl}/spaces/story/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log("delete response", response);
+    dispatch(deleteStory(id));
+  } catch (e) {
+    console.log(e.message);
+  }
 };

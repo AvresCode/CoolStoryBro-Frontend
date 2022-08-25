@@ -23,10 +23,17 @@ export const userSlice = createSlice({
       state.profile = action.payload.user;
     },
 
-    
+    deleteStory : (state, action) => {
+      console.log("delete action", action.payload);
+      const id = action.payload;
+      const updatedStories = state.profile.space.stories.filter((story) => story.id !== id);
+      state.profile = updatedStories;
+    }
+
+
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid } = userSlice.actions;
+export const { loginSuccess, logOut, tokenStillValid, deleteStory } = userSlice.actions;
 
 export default userSlice.reducer;

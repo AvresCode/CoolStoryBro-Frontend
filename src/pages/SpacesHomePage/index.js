@@ -14,7 +14,7 @@ export default function SpacesHome() {
   //   if (!spaces) {dispatch(fetchSpaces())};
   // }, []);
   const spaces = useSelector(selectSpaces);
-  console.log("spaces:", spaces);
+ // console.log("spaces:", spaces);
 
   return (
     <div>

@@ -12,7 +12,7 @@ export default function SpaceDetailsPage() {
   useEffect(() => {
     dispatch(fetchSpaceDetails(id));
   }, [dispatch, id]);
-  console.log("spaceDetails", oneSpace);
+  //console.log("spaceDetails", oneSpace);
 
   if (!oneSpace)
     return (
