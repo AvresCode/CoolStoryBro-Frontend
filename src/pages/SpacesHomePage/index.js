@@ -17,7 +17,7 @@ export default function SpacesHome() {
  // console.log("spaces:", spaces);
 
   return (
-    <div>
+    <div style={{ padding:"2vh 5vw",}}>
       {spaces ? (
         spaces.map((space) => (
           <SpaceCard

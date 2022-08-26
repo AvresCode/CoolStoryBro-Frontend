@@ -6,9 +6,11 @@ import { deleteOneStory } from "../../store/user/actions";
 import { useDispatch } from "react-redux";
 import { AddStoryForm } from "../../components/NewStoryForm";
 import { EditSpace } from "../../components/EditSpace";
+import "./styles.css";
+
 export default function MySpace() {
   const theUser = useSelector(selectUser);
-//  console.log("user", theUser);
+  //  console.log("user", theUser);
   // const { title, description, color, backgroundColor, stories } =
   //   theUser?.space;
   const space = theUser?.space;
@@ -18,28 +20,42 @@ export default function MySpace() {
     <div>
       {theUser && space && (
         <div
+          className="space-container"
           style={{
             color: space.color,
             backgroundColor: space.backgroundColor,
-            textAlign: "center",
-            padding: "2vh 2vw",
           }}
         >
           <h1> {space.title}</h1>
           <h3> Welcome {theUser?.name}! </h3>
           <p>{space.description}</p>
+          <div className="button-container">
+            {" "}
+            <div>
+              {" "}
+              <AddStoryForm />
+            </div>
+            <div>
+              <EditSpace />{" "}
+            </div>
+          </div>
         </div>
       )}
-      {theUser && space && space.stories ? (
+      {theUser &&
+        space &&
+        space.stories &&
         space.stories.map((story) => {
           const { id, name, content, imageUrl } = story;
           return (
-            <div key={id} style={{
-              color: space.color,
-              backgroundColor: space.backgroundColor,
-              textAlign: "center",
-              padding: "2vh 2vw",
-            }}>
+            <div
+              key={id}
+              style={{
+                color: space.color,
+                backgroundColor: space.backgroundColor,
+                textAlign: "center",
+                padding: "2vh 2vw",
+              }}
+            >
               {" "}
               <StoryCard
                 id={id}
@@ -55,12 +71,7 @@ export default function MySpace() {
               </div>
             </div>
           );
-        })
-      ) : (
-        <p > 'You have no story yet, start writing your first story! '</p>
-      )}
-      <div> <AddStoryForm/></div>
-      <div><EditSpace/> </div>
+        })}
     </div>
   );
 }

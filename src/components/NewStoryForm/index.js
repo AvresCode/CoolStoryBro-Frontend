@@ -31,7 +31,7 @@ const AddStoryForm = () => {
 
   return (showForm? (<div>
     <form onSubmit={submit}>
-      <h2>Write your story!</h2>
+      <h4>Write your story!</h4>
       <p>
         <label>
           Name:{" "}

@@ -27,9 +27,9 @@ const EditSpace = () => {
   
 
     return showForm ? (
-        <div>
-          <form onSubmit={submitForm}>
-            <h1>Edit your space</h1>
+        <div >
+          <form style={{display:"flex", flexDirection:"column"}} onSubmit={submitForm}>
+            <h3>Edit your space</h3>
             <label>Title:</label>
             <input
               type="text"

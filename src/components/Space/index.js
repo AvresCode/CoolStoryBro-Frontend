@@ -5,17 +5,18 @@ import { Link } from "react-router-dom";
 
 const SpaceCard = ({ id, title, description, backgroundColor, color }) => {
   return (
-    <div>
+    <div className="space-section">
       {" "}
-      <div key={id} style={{ backgroundColor, color }}>
+      <div key={id} className="space-items" style={{ backgroundColor, color }}>
         {" "}
         <h2>{title}</h2> <p>{description}</p>
-      </div>
-      <div>
+        <div>
         <Link to={`/spaces/${id}`}>
           <button>Visit Space </button>{" "}
         </Link>{" "}
       </div>
+      </div>
+     
     </div>
   );
 };
