@@ -130,6 +130,7 @@ export const deleteOneStory = (id) => async (dispatch, getState) => {
     });
     console.log("delete response", response);
     dispatch(deleteStory(id));
+    dispatch(showMessageWithTimeout("success", false, "Story deleted!", 4000));
   } catch (e) {
     console.log(e.message);
   }
@@ -156,6 +157,7 @@ export const postStoryThunk =
       );
       console.log("story response", response);
       dispatch(addStory(response.data.newStory));
+      dispatch(showMessageWithTimeout("success", false, "Story added!", 4000));
     } catch (e) {
       console.log(e.message);
     }
@@ -176,7 +178,8 @@ export const editMySpace =
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log("edit response", response);
-      dispatch(editSpace(response.data.space))
+      dispatch(editSpace(response.data.space));
+      dispatch(showMessageWithTimeout("success", false, "Edited successfully!", 4000));
 
     } catch (e) {
       console.log(e.message);
