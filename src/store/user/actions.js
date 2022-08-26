@@ -5,7 +5,7 @@ import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
 import { setAllSpaces } from "../spaces/slice";
-import { deleteStory } from "./slice";
+import { deleteStory, addStory } from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -122,7 +122,7 @@ export const getUserWithStoredToken = () => {
 
 export const deleteOneStory = (id) => async (dispatch, getState) => {
   try {
-  //  console.log("here");
+    //  console.log("here");
     const token = selectToken(getState());
     const response = await axios.delete(`${apiUrl}/spaces/story/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -133,3 +133,28 @@ export const deleteOneStory = (id) => async (dispatch, getState) => {
     console.log(e.message);
   }
 };
+
+export const postStoryThunk =
+  (name, content, imageUrl) => async (dispatch, getState) => {
+    try {
+      console.log("addStory");
+      const token = selectToken(getState());
+      const spaceId = getState().user.profile.space.id;
+      const response = await axios.post(
+        `${apiUrl}/spaces/story`,
+        {
+          name,
+          content,
+          imageUrl,
+          spaceId,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log("story response", response);
+      dispatch(addStory(response.data));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };

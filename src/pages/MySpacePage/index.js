@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { StoryCard } from "../../components/Space";
 import { deleteOneStory } from "../../store/user/actions";
 import { useDispatch } from "react-redux";
+import { AddStoryForm } from "../../components/NewStoryForm";
 
 export default function MySpace() {
   const theUser = useSelector(selectUser);
@@ -58,6 +59,7 @@ export default function MySpace() {
       ) : (
         <p > 'You have no story yet, start writing your first story! '</p>
       )}
+      <div> <AddStoryForm/></div>
     </div>
   );
 }
