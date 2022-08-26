@@ -25,6 +25,7 @@ const AddStoryForm = () => {
     setContent("");
     setImage("");
     setShowForm(false);
+    
 
   };
 

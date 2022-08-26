@@ -5,7 +5,7 @@ import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
 import { setAllSpaces } from "../spaces/slice";
-import { deleteStory, addStory } from "./slice";
+import { deleteStory, addStory, editSpace } from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -120,6 +120,7 @@ export const getUserWithStoredToken = () => {
   };
 };
 
+// delete a story
 export const deleteOneStory = (id) => async (dispatch, getState) => {
   try {
     //  console.log("here");
@@ -134,6 +135,7 @@ export const deleteOneStory = (id) => async (dispatch, getState) => {
   }
 };
 
+//Add new story
 export const postStoryThunk =
   (name, content, imageUrl) => async (dispatch, getState) => {
     try {
@@ -153,7 +155,29 @@ export const postStoryThunk =
         }
       );
       console.log("story response", response);
-      dispatch(addStory(response.data));
+      dispatch(addStory(response.data.newStory));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+//Edit my space
+
+export const editMySpace =
+  (title, description, backgroundColor, color) =>
+  async (dispatch, getState) => {
+    try {
+      console.log("EditSpace");
+      const token = selectToken(getState());
+      const id = getState().user.profile.space.id;
+      const response = await axios.patch(
+        `${apiUrl}/spaces/${id}`,
+        { title, description, backgroundColor, color },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log("edit response", response);
+      dispatch(editSpace(response.data.space))
+
     } catch (e) {
       console.log(e.message);
     }

@@ -5,10 +5,10 @@ import { StoryCard } from "../../components/Space";
 import { deleteOneStory } from "../../store/user/actions";
 import { useDispatch } from "react-redux";
 import { AddStoryForm } from "../../components/NewStoryForm";
-
+import { EditSpace } from "../../components/EditSpace";
 export default function MySpace() {
   const theUser = useSelector(selectUser);
-  console.log("user", theUser);
+//  console.log("user", theUser);
   // const { title, description, color, backgroundColor, stories } =
   //   theUser?.space;
   const space = theUser?.space;
@@ -60,6 +60,7 @@ export default function MySpace() {
         <p > 'You have no story yet, start writing your first story! '</p>
       )}
       <div> <AddStoryForm/></div>
+      <div><EditSpace/> </div>
     </div>
   );
 }

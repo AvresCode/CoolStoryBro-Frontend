@@ -23,23 +23,30 @@ export const userSlice = createSlice({
       state.profile = action.payload.user;
     },
 
-    deleteStory : (state, action) => {
+    deleteStory: (state, action) => {
       console.log("delete action", action.payload);
       const id = action.payload;
-      const updatedStories = state.profile.space.stories.filter((story) => story.id !== id);
+      const updatedStories = state.profile.space.stories.filter(
+        (story) => story.id !== id
+      );
       state.profile.space.stories = updatedStories;
     },
 
     addStory: (state, action) => {
       console.log("add story action", action.payload);
-      
-      state.profile.space.stories.push({...action.payload})
-    }
 
+      state.profile.space.stories.push({ ...action.payload });
+    },
 
+    editSpace: (state, action) => {
+      console.log("Edit space action", action.payload);
+
+      state.profile.space = {...state.profile.space, ...action.payload};
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid, deleteStory, addStory } = userSlice.actions;
+export const { loginSuccess, logOut, tokenStillValid, deleteStory, addStory, editSpace } =
+  userSlice.actions;
 
 export default userSlice.reducer;
